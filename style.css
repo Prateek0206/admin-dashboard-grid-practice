@@ -6,7 +6,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-  --normal-font-size: clamp(2px, 1vw, 1.4rem);
+  --normal-font-size: clamp(2px, 1vw, 1rem);
 }
 body {
   width: 100vw;
@@ -26,8 +26,13 @@ a:visited {
   text-decoration: none;
 }
 
+:focus{
+    outline: 1px solid blue;
+}
+
 button,
-svg {
+svg,
+img {
   cursor: pointer;
 }
 
@@ -151,18 +156,20 @@ input:focus {
   border-radius: 0.4rem;
   border: 2px solid #babdca;
   background-color: transparent;
-
   font-weight: bold;
-  transition: all 0.2s ease-in;
-  color: #000;
+  transition: all 0.1s ease-in;
+  color: white;
 }
 
 .menu .page-links button:focus {
+  background-color: #babdca;
   outline: none;
+  color: #000;
 }
 
 .menu .page-links button:hover {
   background-color: #babdca;
+  color: #000;
 }
 
 .sidebar {
@@ -173,6 +180,10 @@ input:focus {
   background-color: #24263a;
   border-radius: 1.4rem;
   max-height: 99vh;
+}
+
+.sidebar a:hover {
+  color: #babdca;
 }
 
 .sidebar-section {
@@ -194,23 +205,25 @@ input:focus {
   padding: 0 1rem;
 }
 
-.section-name {
-  font-size: clamp(6px, 1.4vw, 2rem);
+.sidebar .section-name {
+  font-size: clamp(3px, 1.4vw, 2rem);
 }
 
+.section-name svg {
+  height: 50%;
+  width: 20%;
+}
 
 .dashboard {
   grid-area: 3/2/4/3;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2.5fr 1.5fr;
   grid-template-rows: 1fr 1fr;
   background-color: #24263a;
-  max-height: 100rem;
+  max-height: 60rem;
   border-radius: 2rem;
   padding: 2rem;
-}
-
-.dashboard > * {
+  gap: 3rem;
 }
 
 .projects {
@@ -220,6 +233,7 @@ input:focus {
   display: grid;
   grid-template-rows: 1fr 14fr;
   gap: 1rem;
+  overflow: scroll;
 }
 
 .projects .section-name p {
@@ -227,15 +241,11 @@ input:focus {
   padding: 0 0 0.5rem 1rem;
 }
 
-.projects > * {
-}
-
 .project-preview-cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   padding: min(1rem, 10%);
-  align-items: flex-start;
 }
 
 .projects .card {
@@ -243,11 +253,33 @@ input:focus {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
-  max-height: 300px;
   border-left: 4px solid #babdca;
   padding: min(1.5rem, 10%);
   background-color: #000;
   border-radius: 0.3rem;
+}
+.urgent h2::after {
+  content: " *";
+  color: red;
+}
+
+.projects .done {
+  border-left: 4px solid green;
+}
+
+.projects .done h2 {
+  display: flex;
+  align-items: center;
+}
+
+.projects .done h2::after {
+  content: "DONE";
+  height: fit-content;
+  background-color: green;
+  padding: 0.2rem;
+  margin-left: 0.8rem;
+  font-size: clamp(2px, 0.6vw, 1rem);
+  border-radius: 0.1rem;
 }
 .projects .card h2 {
   color: #babdca;
@@ -281,8 +313,64 @@ input:focus {
 .announcments {
   grid-column: 2/3;
   grid-row: 1/2;
+  padding: min(2rem, 16%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  line-height: 1.5;
+  font-size: 90%;
+  background-color: #14142b;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+.announcments .container {
+  padding: min(0.5rem, 10%);
+  overflow: scroll;
+  height: 100%;
+  max-height: 20rem;
+}
+
+.announcments .container .card {
+  display: flex;
+  flex-direction: column;
+  padding: min(0.8rem, 10%);
+  gap: 0.4rem;
+  border-bottom: 1px solid indianred;
 }
 .trending {
   grid-column: 2/3;
   grid-row: 2/3;
+  padding: min(2rem, 16%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  line-height: 1.5;
+  font-size: 90%;
+  height: 100%;
+  overflow: scroll;
+  background-color: #14142b;
+  border-radius: 2rem;
+}
+.trending .container {
+  padding: min(0.5rem, 10%);
+  max-height: 20rem;
+  overflow: scroll;
+}
+
+.trending .container .card {
+  display: flex;
+  padding: min(0.8rem, 10%);
+  gap: 0.4rem;
+  height: 5rem;
+  border-bottom: 1px solid #babdca;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.trending .container .card img {
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid white;
+  padding: 0.2rem;
 }
